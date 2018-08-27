@@ -170,6 +170,11 @@ void main_task(void *pvParameter) {
     ESP_LOGI(TAG, "Entering deep sleep (the MCU should wake up %u seconds later)...\n\n", MY_DEEP_SLEEP_TIME_SEC);
     vTaskDelay(RTOS_DELAY_1SEC);
 
+    // DEVTEMP-BEGIN A temporary workaround is to call esp_set_deep_sleep_wake_stub(NULL); before entering deep sleep
+    //               https://www.esp32.com/viewtopic.php?f=13&t=6919&p=29714
+    /////esp_set_deep_sleep_wake_stub(NULL);
+    // DEVTEMP-END
+
     esp_deep_sleep_start(); // void
 
     // DEVTEMP @important I never get to this code line if deep sleep is initiated :P
